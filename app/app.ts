@@ -39,8 +39,8 @@ export class App {
             next();
         });
 
-        this.app.use(cors.default())
-        this.app.options('*', cors.default())
+        this.app.use(cors.default)
+        this.app.options('*', cors.default)
 
         // serving static files 
         // this.app.use(express.static('public'));
