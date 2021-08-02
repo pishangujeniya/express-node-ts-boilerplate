@@ -5,11 +5,9 @@ import { DbHelperReturn } from '../../models/GeneralModels';
 
 export class AccountsDbHelper {
     private globalHelper: GlobalHelper;
-    private globalConfig: any;
 
     constructor() {
         this.globalHelper = new GlobalHelper();
-        this.globalConfig = this.globalHelper.getConfig("global");
     }
 
 

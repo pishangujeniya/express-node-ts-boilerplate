@@ -1,3 +1,4 @@
+import { ConfigurationManager } from "../helpers/CofigurationManager";
 import { GlobalHelper } from "../helpers/GlobalHelper";
 
 export class DbHelperReturn {
@@ -10,13 +11,13 @@ export class DbHelperReturn {
 
 export class CustomResponse {
 
-    app_version?: string;
+    app_version?: number;
     error_code?: number;
     error_messages?: string;
     result?: any;
 
     constructor() {
-        this.app_version = new GlobalHelper().getConfig("global")["api_details"]["app_version"];
+        this.app_version = ConfigurationManager.globalConfig.api_details.app_version;
         this.error_code = 500;
     }
 

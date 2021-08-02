@@ -1,5 +1,4 @@
 import { MySQLHelper } from '../MySQLHelper';
-import { GlobalHelper } from '../GlobalHelper';
 import { } from "promise";
 import { BunyanHelper } from "../BunyanHelper";
 import { DbHelperReturn, DatatableRequestModel } from '../../models/GeneralModels';
@@ -11,12 +10,7 @@ import { DbHelperReturn, DatatableRequestModel } from '../../models/GeneralModel
  *  - Its because in MySQL Procedures are also all in one folder, they are not like individual tables related like Triggers.
  */
 export class ProceduresDbHelper {
-    private globalHelper: GlobalHelper;
-    private globalConfig: any;
-
     constructor() {
-        this.globalHelper = new GlobalHelper();
-        this.globalConfig = this.globalHelper.getConfig("global");
     }
 
     /**

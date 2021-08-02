@@ -1,16 +1,14 @@
 import * as mysql from 'mysql2';
 import { BunyanHelper } from './BunyanHelper';
-import { GlobalHelper } from './GlobalHelper';
+import { ConfigurationManager } from './CofigurationManager';
 export class MySQLHelper {
-
-    private static globalConfig = new GlobalHelper().getConfig("global")["database"];
-
-    private static host = MySQLHelper.globalConfig["host"];
-    private static port = MySQLHelper.globalConfig["port"];
-    private static username = MySQLHelper.globalConfig["username"];
-    private static password = MySQLHelper.globalConfig["password"];
-    private static database = MySQLHelper.globalConfig["db_name"];
-    private static maxConnectionLimit = MySQLHelper.globalConfig["max_connections"];
+    
+    private static host = ConfigurationManager.globalConfig.database.host;
+    private static port =  ConfigurationManager.globalConfig.database.port;
+    private static username =  ConfigurationManager.globalConfig.database.username;
+    private static password =  ConfigurationManager.globalConfig.database.password;
+    private static database =  ConfigurationManager.globalConfig.database.db_name;
+    private static maxConnectionLimit =  ConfigurationManager.globalConfig.database.max_connections;
 
     private static mysqlPool = mysql.createPool(
         {

@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import * as uuid from 'uuid';
 import * as bcrypt from 'bcrypt';
+import { ConfigurationManager } from "./CofigurationManager";
 
 
 
@@ -12,7 +13,7 @@ export class GlobalHelper {
     }
 
     public getConfig(fileName: "global" | "payment"): any {
-        let configJson = JSON.parse(readFileSync(join(__dirname, '../configs', fileName + ".json"), 'utf8'));
+        const configJson = ConfigurationManager.globalConfig;
         return configJson;
     }
 
