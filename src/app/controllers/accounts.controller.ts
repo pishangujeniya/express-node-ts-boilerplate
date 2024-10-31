@@ -1,7 +1,7 @@
-import { CustomResponse } from '../models/GeneralModels';
-import { SignUpRequestModel } from '../models/AccountsModels';
-import { AccountsDbHelper } from '../helpers/DbHelpers/AccountsDbHelper';
-import { BunyanHelper } from '../helpers/BunyanHelper';
+import { CustomResponse } from '../models/general.models';
+import { SignUpRequestModel } from '../models/accounts.models';
+import { AccountsDbHelper } from '../services/DbHelpers/AccountsDbHelper';
+import { BunyanHelper } from '../services/BunyanHelper';
 
 export class AccountsController {
     private accountDbHelper: AccountsDbHelper;
@@ -11,9 +11,15 @@ export class AccountsController {
     }
 
     public async signUpUser(req: SignUpRequestModel): Promise<CustomResponse> {
-        var customResponse = new CustomResponse();
+        let customResponse = new CustomResponse();
         try {
 
+            // Faking the response
+            customResponse.error_code = 200;
+            customResponse.result = true;
+
+            // Uncomment following code to test the insert user query
+            /* 
             var insertUserResult = await this.accountDbHelper.insertUser(
                 req.first_name,
                 req.last_name,
@@ -30,6 +36,7 @@ export class AccountsController {
                 customResponse.error_code = 200;
                 customResponse.result = true;
             }
+            */
 
         } catch (error) {
             BunyanHelper.errorLogger.error(error);

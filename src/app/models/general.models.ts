@@ -1,6 +1,3 @@
-import { ConfigurationManager } from "../helpers/CofigurationManager";
-import { GlobalHelper } from "../helpers/GlobalHelper";
-
 export class DbHelperReturn {
     public isError: boolean;
     public result?: any;
@@ -11,13 +8,11 @@ export class DbHelperReturn {
 
 export class CustomResponse {
 
-    app_version?: number;
     error_code?: number;
     error_messages?: string;
     result?: any;
 
     constructor() {
-        this.app_version = ConfigurationManager.globalConfig.api_details.app_version;
         this.error_code = 500;
     }
 
