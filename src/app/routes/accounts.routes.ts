@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { AccountsController } from '../controllers/AccountsController';
-import { SignUpRequestModel } from '../models/AccountsModels';
-import { GlobalHelper } from '../helpers/GlobalHelper';
-import { CustomResponse } from '../models/GeneralModels';
+import { AccountsController } from '../controllers/accounts.controller';
+import { SignUpRequestModel } from '../models/accounts.models';
+import { GlobalHelper } from '../services/GlobalHelper';
+import { CustomResponse } from '../models/general.models';
 /**
  * Routes for Account Controller
  */
@@ -23,10 +23,10 @@ export class AccountsRoutes {
          */
         this.router.route('/signup')
             .post(async (req: Request, res: Response) => {
-                var customResponse: CustomResponse = new CustomResponse();
+                let customResponse: CustomResponse = new CustomResponse();
 
                 try {
-                    var reqBody = req.body as SignUpRequestModel;
+                    let reqBody = req.body as SignUpRequestModel;
                     customResponse = await this.accountsController.signUpUser(reqBody);
                     if (customResponse.error_code != 200 && customResponse.error_code != undefined) {
                         res.status(customResponse.error_code);

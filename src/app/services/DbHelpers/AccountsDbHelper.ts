@@ -1,7 +1,8 @@
 import { MySQLHelper } from '../MySQLHelper';
 import { GlobalHelper } from '../GlobalHelper';
 import { BunyanHelper } from "../BunyanHelper";
-import { DbHelperReturn } from '../../models/GeneralModels';
+import { DbHelperReturn } from '../../models/general.models';
+import { ResultSetHeader } from 'mysql2';
 
 export class AccountsDbHelper {
     private globalHelper: GlobalHelper;
@@ -21,7 +22,7 @@ export class AccountsDbHelper {
      */
     public async insertUser(first_name: string, last_name: string, email_id: string, mobile_number: string, password: string): Promise<DbHelperReturn> {
 
-        var insertUserReturn = new DbHelperReturn();
+        let insertUserReturn = new DbHelperReturn();
 
         try {
 
@@ -51,7 +52,7 @@ export class AccountsDbHelper {
 
             BunyanHelper.activityLogger.info(sqlQuery);
 
-            var results = await MySQLHelper.executeQuery(sqlQuery, [
+            let results = await MySQLHelper.executeQuery(sqlQuery, [
                 this.globalHelper.getNewUUID(),
                 first_name,
                 last_name,
@@ -62,8 +63,7 @@ export class AccountsDbHelper {
                 this.globalHelper.hashString(password),
                 0
             ]);
-
-            if (results[0].affectedRows > 0) {
+            if ((results[0] as ResultSetHeader).affectedRows > 0) {
                 insertUserReturn.isError = false;
             }
             else {

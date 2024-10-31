@@ -2,7 +2,6 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import * as uuid from 'uuid';
 import * as bcrypt from 'bcrypt';
-import { ConfigurationManager } from "./CofigurationManager";
 
 
 
@@ -10,11 +9,6 @@ export class GlobalHelper {
 
     constructor() {
 
-    }
-
-    public getConfig(fileName: "global" | "payment"): any {
-        const configJson = ConfigurationManager.globalConfig;
-        return configJson;
     }
 
     public getNewUUID(): string {
@@ -81,7 +75,7 @@ export class GlobalHelper {
         let result;
 
         t = inputDate.split(/[- :]/);
-        var x = Array<number>();
+        let x = Array<number>();
         for (let index = 0; index < t.length; index++) {
             x.push(Number(t[index]));
         }

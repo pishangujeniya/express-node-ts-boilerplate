@@ -7,22 +7,30 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Windows_Clean_Debug",
-            "preLaunchTask": "windows_typescript_debug_task",
-            "program": "${workspaceFolder}\\build\\server.js",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/dist/server.js", // Adjust to your compiled output
+            "preLaunchTask": "npm: build", // Run build task before starting
             "outFiles": [
-                "${workspaceFolder}/**/*.js"
+                "${workspaceFolder}/dist/**/*.js"
+            ], // Adjust for your compiled files
+            "runtimeArgs": [
+                "--inspect-brk" // Optional: use for debugging
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Linux_Clean_Debug",
-            "preLaunchTask": "linux_typescript_debug_task",
-            "program": "${workspaceFolder}/build/server.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "name": "Launch with ts-node",
+            "program": "${workspaceFolder}/src/server.ts", // Directly run TypeScript file
+            "runtimeExecutable": "node",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

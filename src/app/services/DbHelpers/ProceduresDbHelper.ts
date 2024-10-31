@@ -1,7 +1,7 @@
 import { MySQLHelper } from '../MySQLHelper';
 import { } from "promise";
 import { BunyanHelper } from "../BunyanHelper";
-import { DbHelperReturn, DatatableRequestModel } from '../../models/GeneralModels';
+import { DbHelperReturn, DatatableRequestModel } from '../../models/general.models';
 
 /**
  * Every procedure of our database should be called from here.
@@ -17,13 +17,13 @@ export class ProceduresDbHelper {
      * returns all users
      */
     public async getUsers(dataTableRequestParams: DatatableRequestModel): Promise<DbHelperReturn> {
-        var usersReturn = new DbHelperReturn();
+        let usersReturn = new DbHelperReturn();
         try {
-            // var sqlQuery = "SELECT * FROM `users`";
-            var sqlQuery = "CALL get_users(?, ?, ?, ?, ?, ?, @num_rows); select @num_rows as num_rows;";
+            // let sqlQuery = "SELECT * FROM `users`";
+            let sqlQuery = "CALL get_users(?, ?, ?, ?, ?, ?, @num_rows); select @num_rows as num_rows;";
             BunyanHelper.activityLogger.info(sqlQuery);
 
-            var args = new Array();
+            let args = new Array();
             args.push(
                 '',
                 dataTableRequestParams.search.value,
@@ -32,9 +32,9 @@ export class ProceduresDbHelper {
                 dataTableRequestParams.start,
                 dataTableRequestParams.length
             );
-            var results = await MySQLHelper.executeQuery(sqlQuery, args);
+            let results = await MySQLHelper.executeQuery(sqlQuery, args);
 
-            if (results[0].length > 0) {
+            if (results.length > 0) {
                 usersReturn.isError = false;
             }
             else {
@@ -52,18 +52,18 @@ export class ProceduresDbHelper {
     }
 
     public async deleteUserAndDataPemenent(user_uuid: string): Promise<DbHelperReturn> {
-        var deleteUserAndDataPemenentReturn = new DbHelperReturn();
+        let deleteUserAndDataPemenentReturn = new DbHelperReturn();
 
         try {
-            var sqlQuery = "CALL `delete_user_and_data_permanent`('" + user_uuid + "')";
+            let sqlQuery = "CALL `delete_user_and_data_permanent`('" + user_uuid + "')";
 
             BunyanHelper.activityLogger.info(sqlQuery);
 
-            var results = await MySQLHelper.executeQuery(sqlQuery, [
+            let results = await MySQLHelper.executeQuery(sqlQuery, [
                 user_uuid
             ]);
 
-            if (results[0].length > 0) {
+            if (results.length > 0) {
                 deleteUserAndDataPemenentReturn.isError = false;
             }
             else {

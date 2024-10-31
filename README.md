@@ -1,10 +1,11 @@
 # Node Ts Boilerplate for Express API
 
-
+![Node Ts Express MySQL](https://repository-images.githubusercontent.com/266292612/8ce6be00-9d53-11ea-937c-8dfb73a190be)
 
 ### How to debug and run the project.
-- Make a new folder in root of project with name **build**
 - `npm install`
-- `npm install typescript -g`
-- Open VSCode Debug Panel, Select **Windows_Clean_Debug** or **Linux_Clean_Debug** and Hit Run (Or F5 Shortcut)
+- `npm run dev`
+- For debugging mode Open VSCode Debug Panel, Select **Launch with ts-node** and hit play
+- First sample endpoint: POST > `http://localhost:3000/accounts/signup`
+- For production build run `npm run build`
 > For production build make **false** to `inlineSourceMap` and `inlineSources` in _tsconfig.json_
